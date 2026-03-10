@@ -66,7 +66,7 @@ public class ApiWriterTests
         
         // Verify that the returned model is mocked writer we selected
         var returnedWriter = Assert.IsType<Writer>(okResult.Value);
-        Assert.Equal(mockWriters[2].Name, returnedWriter.Name); //TODO: identify and correct this error
+        Assert.Equal(mockWriters[1].Name, returnedWriter.Name); //TODO: identify and correct this error
     }
     [Fact]
     public void GetWriterById_ReturnsNotFoundwithoutWriter()
