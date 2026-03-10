@@ -19,15 +19,19 @@ public class ApiWriterService : IWriterService
     {
         //TODO: Get the Writer at the given id from the db context
         var writer = _db.Writers.SingleOrDefault(w=>w.Id == id);
+
         //     Remove the Writer at that id, be sure to SaveChanges()
         _db.Writers.Remove(writer);
         _db.SaveChanges();
+
         return new Writer{ Name = writer.Name}; //TODO: return the deleted Writer info
     }
     public long PostWriter(Writer writer)
     {
         //TODO : Add a new Writer to the db context, return the writer id
-        return 0;
+        _db.Writers.Add(writer);
+        _db.SaveChanges();
+        return writer.Id;
     }
     public Writer PutWriter(Writer writer, long id)
     {

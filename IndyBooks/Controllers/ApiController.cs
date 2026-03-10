@@ -64,11 +64,10 @@ namespace IndyBooks.Controllers
         public IActionResult PostWriter([FromBody]Writer writer)
         {
             //TODO: Test for an invalid ModelState -> return BadRequest();
-
+            if ( !ModelState.IsValid ) { return BadRequest(); }
 
             //TODO: Pass the result from the _writerService PostWriter method to Accepted() below
-
-            return Accepted( 0 );
+            return Accepted( _writerService.PostWriter(writer) );
 
         }
        
@@ -81,14 +80,16 @@ namespace IndyBooks.Controllers
         public IActionResult PutWriter([FromBody]Writer writer, long id)
         {
         //TODO: Test for an invalid ModelState -> return BadRequest();
+            if ( !ModelState.IsValid ) { return BadRequest(); }
 
 
         //TODO: Test for missing record using Any() -> return NotFound();
+            if ( !_writerService.GetWriterList().Any(w => w.Id == id) ) { return NotFound(); }
 
 
         //TODO: Otherwise, pass the results of the _writerService PutWriter method to Accepted() below
 
-            return Accepted( new Writer{ Name = "Replace me with the results of the PutWriter method in WriterService"} );
+            return Accepted( new Writer{ Name = "insert name here"} );
         }
     }
 }
