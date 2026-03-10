@@ -18,8 +18,11 @@ public class ApiWriterService : IWriterService
     public Writer DeleteWriterById(long id)
     {
         //TODO: Get the Writer at the given id from the db context
+        var writer = _db.Writers.SingleOrDefault(w=>w.Id == id);
         //     Remove the Writer at that id, be sure to SaveChanges()
-        return new Writer{ Name = "Fix the ApiWriter Service DeleteWriterById method"}; //TODO: return the deleted Writer info
+        _db.Writers.Remove(writer);
+        _db.SaveChanges();
+        return new Writer{ Name = writer.Name}; //TODO: return the deleted Writer info
     }
     public long PostWriter(Writer writer)
     {

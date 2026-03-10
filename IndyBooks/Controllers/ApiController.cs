@@ -53,7 +53,7 @@ namespace IndyBooks.Controllers
 
             //TODO: Pass the _writerService DeleteWriterById method to Accepted() below
 
-            return Accepted();
+            return Accepted( _writerService.DeleteWriterById(id) );
         }
         /**
          * CREATE: Add a new writer to the collection
