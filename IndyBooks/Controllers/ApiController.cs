@@ -28,9 +28,9 @@ namespace IndyBooks.Controllers
         [HttpGet] 
         public IActionResult GetWriter(long id)
         {
-            if( id == 0 ) //if(_writerService.GetWriterById(id) == null) //TODO: Test for missing record using the lambda Extension method .Any()
+            if( _writerService.GetWriterById(id) == null ) //if(_writerService.GetWriterById(id) == null)
             {
-                return Ok(); //TODO: if not return NotFound() instead of Ok()
+                return NotFound(); //TODO: if not return NotFound() instead of Ok()
             }
 
         //Otherwise return Ok(writer);
@@ -46,7 +46,7 @@ namespace IndyBooks.Controllers
         public ActionResult Delete(long id)
         {
             //TODO: Udpate the  for record using the _writerService.GetWritersList and the Any() collections method
-            if (true) 
+            if ( !_writerService.GetWriterList().Any(w => w.Id == id) ) 
             { 
                 return NotFound(); 
             }
