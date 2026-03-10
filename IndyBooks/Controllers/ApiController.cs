@@ -89,7 +89,7 @@ namespace IndyBooks.Controllers
 
         //TODO: Otherwise, pass the results of the _writerService PutWriter method to Accepted() below
 
-            return Accepted( new Writer{ Name = "insert name here"} );
+            return Accepted( _writerService.PutWriter(writer, id) );
         }
     }
 }

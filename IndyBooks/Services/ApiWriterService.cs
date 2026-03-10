@@ -24,7 +24,7 @@ public class ApiWriterService : IWriterService
         _db.Writers.Remove(writer);
         _db.SaveChanges();
 
-        return new Writer{ Name = writer.Name}; //TODO: return the deleted Writer info
+        return new Writer{ Name = writer.Name, Id = writer.Id}; //TODO: return the deleted Writer info
     }
     public long PostWriter(Writer writer)
     {
@@ -36,6 +36,9 @@ public class ApiWriterService : IWriterService
     public Writer PutWriter(Writer writer, long id)
     {
         //TODO: Update the Writer at the given id, return the Writer
-        return new Writer{ Name = "Fix the ApiWriter Service PutWriter method"};;
+
+        _db.Writers.FirstOrDefault(w => w.Id == id).Name = writer.Name;
+        _db.SaveChanges();
+        return new Writer { Name = writer.Name, Id = id };
     }
 }
